@@ -25,65 +25,627 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling (Boldin-inspired)
+# ========================================
+# PHASE 1: PROFESSIONAL CUSTOM CSS
+# ========================================
 st.markdown("""
     <style>
-    .main-header {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #1f77b4;
-        margin-bottom: 0.5rem;
+    /* Import Professional Font - Inter */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    
+    /* ============================================
+       CSS DESIGN SYSTEM - Financial Professional
+       ============================================ */
+    
+    :root {
+        /* Primary Colors - Brighter for dark theme */
+        --primary-dark: #5B9BD5;
+        --primary-main: #3B7FC4;
+        --primary-light: #7CB8E8;
+        --primary-accent: #4A9EDB;
+        
+        /* Success/Growth - Brighter Green */
+        --success-dark: #22C55E;
+        --success-main: #16A34A;
+        --success-light: #86EFAC;
+        
+        /* Warning - Brighter Amber */
+        --warning-dark: #FCD34D;
+        --warning-main: #F59E0B;
+        --warning-light: #FDE68A;
+        
+        /* Danger - Brighter Red */
+        --danger-dark: #F87171;
+        --danger-main: #EF4444;
+        --danger-light: #FCA5A5;
+        
+        /* Dark Theme Neutrals */
+        --gray-900: #FAFAFA;  /* Almost white - primary text */
+        --gray-700: #E5E7EB;  /* Light gray - secondary text */
+        --gray-500: #9CA3AF;  /* Medium gray - labels */
+        --gray-300: #4B5563;  /* Dark gray - borders */
+        --gray-100: #1F2937;  /* Very dark - backgrounds */
+        --white: #0E1117;     /* Dark background */
+        
+        /* Typography */
+        --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+        
+        /* Spacing */
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+        --space-2xl: 3rem;
+        
+        /* Border Radius */
+        --radius-sm: 0.25rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        
+        /* Shadows - Lighter for dark theme */
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
     }
-    .sub-header {
-        font-size: 1.2rem;
-        color: #666;
-        margin-bottom: 2rem;
+    
+    /* ============================================
+       GLOBAL STYLES - Dark Theme Professional
+       ============================================ */
+    
+    /* Main app background - keep Streamlit's dark */
+    .main, .main > div {
+        font-family: var(--font-primary) !important;
+        color: var(--gray-900) !important;
     }
-    .section-header {
-        font-size: 1.5rem;
+    
+    /* All text elements */
+    p, span, div {
+        font-family: var(--font-primary) !important;
+        color: var(--gray-900) !important;
+    }
+    
+    /* Headers - brighter for dark theme */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-primary) !important;
+        font-weight: 700 !important;
+        color: var(--primary-light) !important;
+        letter-spacing: -0.02em !important;
+    }
+    
+    h1 {
+        font-size: 2.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    h2 {
+        font-size: 1.875rem !important;
+        margin-top: var(--space-xl) !important;
+        margin-bottom: var(--space-md) !important;
+    }
+    
+    h3 {
+        font-size: 1.5rem !important;
+        margin-top: var(--space-lg) !important;
+        margin-bottom: var(--space-sm) !important;
+    }
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-sm);
+    }
+    
+    /* ============================================
+       METRIC CARDS - Hero Display
+       ============================================ */
+    
+    [data-testid="stMetricValue"] {
+        font-size: 3rem;
+        font-weight: 900;
+        color: var(--primary-dark);
+        font-family: var(--font-primary);
+    }
+    
+    [data-testid="stMetricLabel"] {
+        font-size: 0.875rem;
         font-weight: 600;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        border-bottom: 2px solid #e0e0e0;
-        padding-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--gray-700);
     }
-    .metric-card {
-        background-color: #f8f9fa;
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin: 0.5rem 0;
-        border-left: 4px solid #1f77b4;
+    
+    [data-testid="stMetricDelta"] {
+        font-size: 1rem;
+        font-weight: 600;
     }
-    .success-box {
-        background-color: #d4edda;
-        border-left: 5px solid #28a745;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        border-radius: 4px;
+    
+    /* ============================================
+       INPUT FIELDS - Dark Theme Professional
+       ============================================ */
+    
+    /* Number Inputs */
+    .stNumberInput > div > div > input {
+        background: #1E2127 !important;
+        border: 2px solid var(--gray-300) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        font-family: var(--font-mono) !important;
+        color: var(--gray-900) !important;
+        transition: all 0.2s ease !important;
+        min-height: 44px !important;
     }
-    .warning-box {
-        background-color: #fff3cd;
-        border-left: 5px solid #ffc107;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        border-radius: 4px;
+    
+    .stNumberInput > div > div > input:focus {
+        border-color: var(--primary-accent) !important;
+        box-shadow: 0 0 0 3px rgba(59, 127, 196, 0.3) !important;
+        outline: none !important;
     }
-    .danger-box {
-        background-color: #f8d7da;
-        border-left: 5px solid #dc3545;
-        padding: 1.5rem;
-        margin: 1rem 0;
-        border-radius: 4px;
+    
+    .stNumberInput > div > div > input:hover {
+        border-color: var(--primary-light) !important;
     }
-    .info-box {
-        background-color: #d1ecf1;
-        border-left: 5px solid #17a2b8;
-        padding: 1rem;
-        margin: 1rem 0;
-        border-radius: 4px;
+    
+    /* Text Inputs */
+    .stTextInput > div > div > input {
+        background: #1E2127 !important;
+        border: 2px solid var(--gray-300) !important;
+        border-radius: var(--radius-lg) !important;
+        padding: 12px 16px !important;
+        font-size: 16px !important;
+        font-family: var(--font-primary) !important;
+        color: var(--gray-900) !important;
+        transition: all 0.2s ease !important;
+        min-height: 44px !important;
     }
+    
+    .stTextInput > div > div > input:focus {
+        border-color: var(--primary-accent) !important;
+        box-shadow: 0 0 0 3px rgba(59, 127, 196, 0.3) !important;
+        outline: none !important;
+    }
+    
+    /* Select Boxes */
+    .stSelectbox > div > div {
+        background: #1E2127 !important;
+        border: 2px solid var(--gray-300) !important;
+        border-radius: var(--radius-lg) !important;
+        font-family: var(--font-primary) !important;
+        min-height: 44px !important;
+        color: var(--gray-900) !important;
+    }
+    
+    .stSelectbox > div > div:hover {
+        border-color: var(--primary-light) !important;
+    }
+    
+    /* Sliders */
+    .stSlider > div > div > div {
+        background: var(--primary-accent);
+    }
+    
+    /* Checkboxes */
+    .stCheckbox {
+        font-family: var(--font-primary);
+        font-size: 16px;
+    }
+    
+    /* Input Labels - Make sure they're visible! */
+    label {
+        font-family: var(--font-primary) !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: var(--gray-700) !important;
+        margin-bottom: var(--space-sm) !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Streamlit specific label classes */
+    [data-testid="stMarkdownContainer"] label,
+    .stNumberInput label,
+    .stTextInput label,
+    .stSelectbox label,
+    .stSlider label,
+    .stCheckbox label {
+        font-family: var(--font-primary) !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: var(--gray-700) !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* ============================================
+       BUTTONS - Clear Hierarchy
+       ============================================ */
+    
+    .stButton > button {
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        font-family: var(--font-primary);
+        padding: 12px 24px;
+        transition: all 0.2s ease;
+        min-height: 44px;
+        border: none;
+    }
+    
+    /* Primary Button (CTA) */
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(135deg, var(--primary-accent) 0%, var(--primary-main) 100%);
+        color: white;
+        box-shadow: var(--shadow-md);
+        font-size: 16px;
+    }
+    
+    .stButton > button[kind="primary"]:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .stButton > button[kind="primary"]:active {
+        transform: translateY(0);
+    }
+    
+    /* Secondary Button */
+    .stButton > button[kind="secondary"] {
+        background: var(--white);
+        color: var(--primary-dark);
+        border: 2px solid var(--gray-300);
+    }
+    
+    .stButton > button[kind="secondary"]:hover {
+        border-color: var(--primary-accent);
+        background: var(--gray-100);
+    }
+    
+    /* ============================================
+       EXPANDERS - Collapsible Sections
+       ============================================ */
+    
+    .streamlit-expanderHeader {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 16px 24px;
+        border: 2px solid var(--gray-300);
+        font-size: 18px;
+        font-weight: 600;
+        font-family: var(--font-primary);
+        transition: all 0.2s ease;
+    }
+    
+    .streamlit-expanderHeader:hover {
+        border-color: var(--primary-accent);
+        background: var(--gray-100);
+    }
+    
+    .streamlit-expanderContent {
+        background: var(--white);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        padding: 24px;
+        margin-top: -12px;
+        border: 2px solid var(--gray-300);
+        border-top: none;
+    }
+    
+    /* ============================================
+       TABS - Clean Navigation
+       ============================================ */
+    
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+        background: transparent;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        border-radius: var(--radius-lg);
+        padding: 12px 24px;
+        font-weight: 600;
+        font-family: var(--font-primary);
+        background: var(--white);
+        border: 2px solid var(--gray-300);
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background: var(--primary-accent);
+        color: white;
+        border-color: var(--primary-accent);
+    }
+    
+    /* ============================================
+       TABLES - Professional Data Display
+       ============================================ */
+    
+    .dataframe {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    .dataframe thead th {
+        background: var(--gray-100);
+        color: var(--gray-700);
+        font-weight: 600;
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 2px solid var(--gray-300);
+        font-family: var(--font-primary);
+    }
+    
+    .dataframe tbody td {
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--gray-300);
+    }
+    
+    .dataframe tbody tr:nth-child(even) {
+        background: #F9FAFB;
+    }
+    
+    .dataframe tbody tr:hover {
+        background: #EEF2FF;
+        transition: background 0.2s ease;
+    }
+    
+    /* ============================================
+       SIDEBAR - Force Dark Theme
+       ============================================ */
+    
+    /* Force sidebar container to dark background */
+    [data-testid="stSidebar"],
+    [data-testid="stSidebar"] > div,
+    section[data-testid="stSidebar"],
+    .css-1d391kg,
+    .st-emotion-cache-1d391kg {
+        background-color: #1E2127 !important;
+        background: #1E2127 !important;
+    }
+    
+    /* Force all sidebar child elements */
+    [data-testid="stSidebar"] * {
+        background-color: transparent !important;
+    }
+    
+    [data-testid="stSidebar"] {
+        padding: var(--space-lg) !important;
+    }
+    
+    [data-testid="stSidebar"] .block-container {
+        padding-top: var(--space-md) !important;
+        background: transparent !important;
+    }
+    
+    /* Force sidebar labels to be visible with light text */
+    [data-testid="stSidebar"] label {
+        font-family: var(--font-primary) !important;
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        color: #E5E7EB !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Force all text in sidebar to light color */
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] div {
+        color: #FAFAFA !important;
+        font-family: var(--font-primary) !important;
+    }
+    
+    /* Make sure subheaders are bright */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        color: #7CB8E8 !important;
+        visibility: visible !important;
+        display: block !important;
+        font-family: var(--font-primary) !important;
+        font-weight: 700 !important;
+    }
+    
+    /* Input backgrounds in sidebar should be darker */
+    [data-testid="stSidebar"] input {
+        background-color: #0E1117 !important;
+        color: #FAFAFA !important;
+    }
+    
+    /* Button backgrounds in sidebar */
+    [data-testid="stSidebar"] button {
+        background-color: #0E1117 !important;
+        color: #FAFAFA !important;
+        border-color: #4B5563 !important;
+    }
+    
+    /* ============================================
+       PROGRESS BAR - During Simulation
+       ============================================ */
+    
+    .stProgress > div > div {
+        background: linear-gradient(90deg, var(--primary-accent) 0%, var(--success-main) 100%);
+        border-radius: var(--radius-lg);
+    }
+    
+    /* ============================================
+       LOADING SPINNER
+       ============================================ */
+    
+    .stSpinner > div {
+        border-color: var(--primary-accent) transparent transparent transparent;
+    }
+    
+    /* ============================================
+       ALERTS & NOTIFICATIONS
+       ============================================ */
+    
+    .stAlert {
+        border-radius: var(--radius-lg);
+        padding: var(--space-md);
+        font-family: var(--font-primary);
+    }
+    
+    /* Success Alert */
+    [data-baseweb="notification"][kind="success"] {
+        background: var(--success-light);
+        border-left: 4px solid var(--success-main);
+    }
+    
+    /* Warning Alert */
+    [data-baseweb="notification"][kind="warning"] {
+        background: var(--warning-light);
+        border-left: 4px solid var(--warning-main);
+    }
+    
+    /* Error Alert */
+    [data-baseweb="notification"][kind="error"] {
+        background: var(--danger-light);
+        border-left: 4px solid var(--danger-main);
+    }
+    
+    /* Info Alert */
+    [data-baseweb="notification"][kind="info"] {
+        background: #DBEAFE;
+        border-left: 4px solid var(--primary-accent);
+    }
+    
+    /* ============================================
+       SCROLLBAR - Styled
+       ============================================ */
+    
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--gray-100);
+        border-radius: var(--radius-sm);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--gray-300);
+        border-radius: var(--radius-sm);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-accent);
+    }
+    
+    /* ============================================
+       UTILITY CLASSES
+       ============================================ */
+    
+    .success-text {
+        color: var(--success-main);
+        font-weight: 700;
+    }
+    
+    .warning-text {
+        color: var(--warning-main);
+        font-weight: 700;
+    }
+    
+    .danger-text {
+        color: var(--danger-main);
+        font-weight: 700;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .font-mono {
+        font-family: var(--font-mono);
+    }
+    
+    /* ============================================
+       RESPONSIVE - iPad Optimizations
+       ============================================ */
+    
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+        }
+        
+        [data-testid="stMetricValue"] {
+            font-size: 2rem;
+        }
+    }
+    
     </style>
 """, unsafe_allow_html=True)
+
+# ========================================
+# CHART THEME CONFIGURATION
+# ========================================
+
+def get_professional_chart_layout():
+    """Return professional Plotly layout configuration for dark theme"""
+    return {
+        'font': {
+            'family': 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            'size': 14,
+            'color': '#E5E7EB'  # Light gray text
+        },
+        'title': {
+            'font': {
+                'size': 24,
+                'color': '#7CB8E8',  # Bright blue for dark theme
+                'family': 'Inter, sans-serif',
+                'weight': 700
+            },
+            'x': 0.02,
+            'xanchor': 'left'
+        },
+        'paper_bgcolor': '#0E1117',  # Dark background
+        'plot_bgcolor': '#1E2127',   # Slightly lighter plot area
+        'hovermode': 'x unified',
+        'hoverlabel': {
+            'bgcolor': '#1E2127',
+            'bordercolor': '#3B7FC4',
+            'font': {'size': 13, 'family': 'Inter', 'color': '#FAFAFA'}
+        },
+        'xaxis': {
+            'gridcolor': '#374151',  # Subtle grid
+            'gridwidth': 1,
+            'linecolor': '#4B5563',
+            'linewidth': 2,
+            'tickfont': {'size': 13, 'family': 'Inter', 'color': '#E5E7EB'},
+            'titlefont': {'size': 14, 'family': 'Inter', 'color': '#E5E7EB'}
+        },
+        'yaxis': {
+            'gridcolor': '#374151',
+            'gridwidth': 1,
+            'linecolor': '#4B5563',
+            'linewidth': 2,
+            'tickfont': {'size': 13, 'family': 'Inter', 'color': '#E5E7EB'},
+            'titlefont': {'size': 14, 'family': 'Inter', 'color': '#E5E7EB'}
+        },
+        'margin': {'l': 80, 'r': 40, 't': 100, 'b': 60}
+    }
+
+# Professional color palette
+CHART_COLORS = {
+    'primary': '#3B7FC4',
+    'success': '#16A34A',
+    'warning': '#F59E0B',
+    'danger': '#EF4444',
+    'purple': '#8B5CF6',
+    'pink': '#EC4899'
+}
+
+# ========================================
+# SESSION STATE
+# ========================================
 
 # Initialize session state
 if 'simulation_run' not in st.session_state:
@@ -91,9 +653,13 @@ if 'simulation_run' not in st.session_state:
 if 'results' not in st.session_state:
     st.session_state.results = None
 
-# Title
-st.markdown('<p class="main-header">🎯 Retirement Planning Dashboard</p>', unsafe_allow_html=True)
-st.markdown('<p class="sub-header">Plan your retirement with confidence using Monte Carlo simulations</p>', unsafe_allow_html=True)
+# ========================================
+# MAIN HEADER
+# ========================================
+
+st.title("🎯 Retirement Planning Dashboard")
+st.markdown("**Plan your retirement with confidence using Monte Carlo simulations**")
+st.markdown("---")
 
 # Sidebar - Input Parameters
 with st.sidebar:
@@ -521,159 +1087,202 @@ if st.session_state.simulation_run and st.session_state.results is not None:
     
     st.markdown("---")
     
-    # Portfolio Projection Chart (Boldin-style)
-    st.markdown('<p class="section-header">📈 Projected Net Worth</p>', unsafe_allow_html=True)
+    # Portfolio Projection Chart
+    st.subheader("📈 Projected Net Worth")
     
     fig = go.Figure()
     
     years = results.years
     percentiles = results.percentiles
     
-    # Add percentile bands with better styling
+    # Add percentile bands with professional colors
+    # 90th percentile - Best case
     fig.add_trace(go.Scatter(
         x=years, y=percentiles[90],
-        name='90th Percentile',
-        line=dict(color='rgba(144, 238, 144, 0.8)', width=2),  # Light green, more visible
+        name='Best Case (90th %ile)',
+        line=dict(color='#3B7FC4', width=2),
         mode='lines',
-        showlegend=True
+        showlegend=True,
+        hovertemplate='<b>Age %{x}</b><br>$%{y:,.0f}<extra></extra>'
     ))
     
+    # 75th percentile with fill
     fig.add_trace(go.Scatter(
         x=years, y=percentiles[75],
         name='75th Percentile',
         fill='tonexty',
-        fillcolor='rgba(144, 238, 144, 0.3)',  # Light green fill
-        line=dict(color='rgba(144, 238, 144, 0.6)', width=2),
+        fillcolor='rgba(59, 127, 196, 0.15)',
+        line=dict(color='#5B9BD5', width=1.5),
         mode='lines',
-        showlegend=True
+        showlegend=True,
+        hovertemplate='<b>Age %{x}</b><br>$%{y:,.0f}<extra></extra>'
     ))
     
+    # Median - Most important line
     fig.add_trace(go.Scatter(
         x=years, y=percentiles[50],
-        name='Median (50th)',
-        line=dict(color='rgb(64, 196, 255)', width=4),  # Bright cyan
+        name='Expected (Median)',
+        line=dict(color='#1E3A5F', width=4),
         mode='lines',
-        showlegend=True
+        showlegend=True,
+        hovertemplate='<b>Age %{x}</b><br>$%{y:,.0f}<extra></extra>'
     ))
     
+    # 25th percentile with fill
     fig.add_trace(go.Scatter(
         x=years, y=percentiles[25],
         name='25th Percentile',
         fill='tonexty',
-        fillcolor='rgba(255, 193, 7, 0.3)',  # Yellow fill
-        line=dict(color='rgba(255, 193, 7, 0.8)', width=2),  # Bright yellow
+        fillcolor='rgba(245, 158, 11, 0.15)',
+        line=dict(color='#F59E0B', width=1.5),
         mode='lines',
-        showlegend=True
+        showlegend=True,
+        hovertemplate='<b>Age %{x}</b><br>$%{y:,.0f}<extra></extra>'
     ))
     
+    # 10th percentile - Worst case
     fig.add_trace(go.Scatter(
         x=years, y=percentiles[10],
-        name='10th Percentile',
+        name='Worst Case (10th %ile)',
         fill='tonexty',
-        fillcolor='rgba(255, 99, 71, 0.3)',  # Tomato red fill
-        line=dict(color='rgba(255, 99, 71, 0.8)', width=2),  # Bright red
+        fillcolor='rgba(239, 68, 68, 0.15)',
+        line=dict(color='#EF4444', width=2, dash='dot'),
         mode='lines',
-        showlegend=True
+        showlegend=True,
+        hovertemplate='<b>Age %{x}</b><br>$%{y:,.0f}<extra></extra>'
     ))
     
-    # Add retirement age line
-    fig.add_vline(x=retirement_age, line_dash="dash", line_color="rgba(144, 238, 144, 1)", line_width=3,
-                  annotation_text="Retirement", annotation_position="top", 
-                  annotation_font_color="white")
-    
-    # Add goal line
-    if final_estate_goal > 0:
-        fig.add_hline(y=final_estate_goal, line_dash="dot", line_color="rgba(255, 105, 180, 1)", line_width=3,
-                      annotation_text=f"Goal: {format_currency(final_estate_goal)}", 
-                      annotation_position="right",
-                      annotation_font_color="white")
-    
-    fig.update_layout(
-        title={
-            'text': "Portfolio Value Projection with Uncertainty Bands",
-            'font': {'size': 20, 'color': 'white'}
-        },
-        xaxis_title="Age",
-        yaxis_title="Portfolio Value",
-        hovermode='x unified',
-        height=550,
-        showlegend=True,
-        legend=dict(
-            yanchor="top",
-            y=0.99,
-            xanchor="left",
-            x=0.01,
-            bgcolor="rgba(40, 40, 40, 0.8)",
-            font=dict(color='white')
-        ),
-        plot_bgcolor='rgb(30, 30, 30)',  # Dark background
-        paper_bgcolor='rgb(20, 20, 20)',  # Darker outer background
-        font=dict(color='white'),  # All text white
+    # Add retirement marker
+    fig.add_vline(
+        x=retirement_age,
+        line=dict(color='#16A34A', width=2, dash='dash'),
+        annotation=dict(
+            text="🎯 Retirement",
+            showarrow=False,
+            yref="paper",
+            y=1.05,
+            font=dict(size=14, color='#16A34A', family='Inter', weight=600)
+        )
     )
     
-    fig.update_xaxes(gridcolor='rgba(100, 100, 100, 0.3)', color='white')
-    fig.update_yaxes(tickformat="$,.0f", gridcolor='rgba(100, 100, 100, 0.3)', color='white')
+    # Add goal line if specified
+    if final_estate_goal > 0:
+        fig.add_hline(
+            y=final_estate_goal,
+            line=dict(color='#8B5CF6', width=2, dash='dot'),
+            annotation=dict(
+                text=f"Goal: {format_currency(final_estate_goal)}",
+                xref="paper",
+                x=1.02,
+                font=dict(size=12, color='#8B5CF6', family='Inter')
+            )
+        )
     
-    st.plotly_chart(fig, width="stretch")
-    
-    # Net Worth Breakdown Chart (Boldin-style stacked bars)
-    st.markdown('<p class="section-header">💼 Net Worth Composition Over Time</p>', unsafe_allow_html=True)
-    
-    # For simplicity, show median path breakdown by account type
-    # This would ideally track each account type separately through simulation
-    fig2 = go.Figure()
-    
-    # Create stacked bar chart
-    # Using percentiles as proxy for different asset categories
-    savings_portion = percentiles[50] * 0.6  # Approximation
-    investments_portion = percentiles[50] * 0.4
-    
-    fig2.add_trace(go.Bar(
-        x=years,
-        y=savings_portion,
-        name='Retirement Accounts',
-        marker_color='rgb(0, 255, 157)',  # Bright cyan-green
-        hovertemplate='Age: %{x}<br>Retirement Accounts: $%{y:,.0f}<extra></extra>'
-    ))
-    
-    fig2.add_trace(go.Bar(
-        x=years,
-        y=investments_portion,
-        name='Taxable Investments',
-        marker_color='rgb(255, 193, 7)',  # Bright yellow
-        hovertemplate='Age: %{x}<br>Taxable Investments: $%{y:,.0f}<extra></extra>'
-    ))
-    
-    fig2.update_layout(
-        title={
-            'text': "Net Worth by Account Type (Median Scenario)",
-            'font': {'size': 20, 'color': 'white'}
-        },
-        xaxis_title="Age",
-        yaxis_title="Net Worth",
-        barmode='stack',
-        height=450,
-        plot_bgcolor='rgb(30, 30, 30)',  # Dark background
-        paper_bgcolor='rgb(20, 20, 20)',  # Darker outer background
-        font=dict(color='white'),
+    # Apply professional layout
+    layout_config = get_professional_chart_layout()
+    fig.update_layout(
+        **layout_config,
+        title={'text': 'Portfolio Value Projection with Uncertainty Bands'},
+        xaxis_title='Age',
+        yaxis_title='Portfolio Value',
+        height=600,
+        width=1200,
+        showlegend=True,
         legend=dict(
             orientation="h",
             yanchor="bottom",
             y=1.02,
             xanchor="right",
             x=1,
-            bgcolor="rgba(40, 40, 40, 0.8)",
-            font=dict(color='white')
+            font=dict(size=13, family='Inter'),
+            bgcolor='rgba(255, 255, 255, 0.9)',
+            bordercolor='#D1D5DB',
+            borderwidth=1
         )
     )
     
-    fig2.update_xaxes(gridcolor='rgba(100, 100, 100, 0.3)', color='white')
-    fig2.update_yaxes(tickformat="$,.0f", gridcolor='rgba(100, 100, 100, 0.3)', color='white')
+    fig.update_yaxes(tickformat="$,.0f")
     
-    st.plotly_chart(fig2, width="stretch")
+    st.plotly_chart(fig, use_container_width=True)
     
-    # Income vs Expenses Chart (Boldin-style)
-    st.markdown('<p class="section-header">💰 Lifetime Income Projection</p>', unsafe_allow_html=True)
+    # Net Worth Breakdown Chart
+    st.subheader("💼 Net Worth Composition Over Time")
+    
+    # For simplicity, show median path breakdown by account type
+    fig2 = go.Figure()
+    
+    # Create stacked area chart - more elegant than bars
+    # Using percentiles as proxy for different asset categories
+    retirement_accounts = percentiles[50] * 0.65  # Approximation for retirement accounts
+    taxable_accounts = percentiles[50] * 0.25     # Taxable
+    cash_reserves = percentiles[50] * 0.10        # Cash
+    
+    # Stack from bottom to top
+    fig2.add_trace(go.Scatter(
+        x=years,
+        y=retirement_accounts,
+        name='Retirement Accounts (401k, IRA, HSA)',
+        fill='tozeroy',
+        fillcolor='rgba(59, 127, 196, 0.6)',
+        line=dict(color='#3B7FC4', width=2),
+        mode='lines',
+        stackgroup='one',
+        hovertemplate='<b>Age %{x}</b><br>Retirement: $%{y:,.0f}<extra></extra>'
+    ))
+    
+    fig2.add_trace(go.Scatter(
+        x=years,
+        y=taxable_accounts,
+        name='Taxable Investments',
+        fill='tonexty',
+        fillcolor='rgba(245, 158, 11, 0.6)',
+        line=dict(color='#F59E0B', width=2),
+        mode='lines',
+        stackgroup='one',
+        hovertemplate='<b>Age %{x}</b><br>Taxable: $%{y:,.0f}<extra></extra>'
+    ))
+    
+    fig2.add_trace(go.Scatter(
+        x=years,
+        y=cash_reserves,
+        name='Cash Reserves',
+        fill='tonexty',
+        fillcolor='rgba(22, 163, 74, 0.6)',
+        line=dict(color='#16A34A', width=2),
+        mode='lines',
+        stackgroup='one',
+        hovertemplate='<b>Age %{x}</b><br>Cash: $%{y:,.0f}<extra></extra>'
+    ))
+    
+    # Apply professional layout
+    layout_config = get_professional_chart_layout()
+    fig2.update_layout(
+        **layout_config,
+        title={'text': 'Net Worth by Account Type (Median Scenario)'},
+        xaxis_title='Age',
+        yaxis_title='Net Worth',
+        height=500,
+        width=1200,
+        showlegend=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(size=13, family='Inter'),
+            bgcolor='rgba(255, 255, 255, 0.9)',
+            bordercolor='#D1D5DB',
+            borderwidth=1
+        )
+    )
+    
+    fig2.update_yaxes(tickformat="$,.0f")
+    
+    st.plotly_chart(fig2, use_container_width=True)
+    
+    # Income vs Expenses Chart
+    st.subheader("💰 Lifetime Income Projection")
     
     fig3 = go.Figure()
     
@@ -724,78 +1333,87 @@ if st.session_state.simulation_run and st.session_state.results is not None:
             exp = 0
         expenses.append(exp)
     
-    # Stacked bar chart for income sources
+    # Stacked bar chart for income sources with professional colors
     fig3.add_trace(go.Bar(
         x=years, y=work_income,
         name='Work Income',
-        marker_color='rgb(147, 112, 219)',  # Bright purple
-        hovertemplate='Age: %{x}<br>Work: $%{y:,.0f}<extra></extra>'
+        marker_color='#8B5CF6',  # Purple
+        hovertemplate='<b>Age %{x}</b><br>Work: $%{y:,.0f}<extra></extra>'
     ))
     
     fig3.add_trace(go.Bar(
         x=years, y=ss_income,
         name='Social Security',
-        marker_color='rgb(255, 140, 0)',  # Bright orange
-        hovertemplate='Age: %{x}<br>Social Security: $%{y:,.0f}<extra></extra>'
+        marker_color='#3B7FC4',  # Blue
+        hovertemplate='<b>Age %{x}</b><br>Social Security: $%{y:,.0f}<extra></extra>'
     ))
     
     fig3.add_trace(go.Bar(
         x=years, y=pension_income,
         name='Pension',
-        marker_color='rgb(64, 196, 255)',  # Bright cyan
-        hovertemplate='Age: %{x}<br>Pension: $%{y:,.0f}<extra></extra>'
+        marker_color='#16A34A',  # Green
+        hovertemplate='<b>Age %{x}</b><br>Pension: $%{y:,.0f}<extra></extra>'
     ))
     
     fig3.add_trace(go.Bar(
         x=years, y=rmd_income,
         name='RMD/Withdrawals',
-        marker_color='rgb(255, 215, 0)',  # Bright gold
-        hovertemplate='Age: %{x}<br>RMD: $%{y:,.0f}<extra></extra>'
+        marker_color='#F59E0B',  # Amber
+        hovertemplate='<b>Age %{x}</b><br>RMD: $%{y:,.0f}<extra></extra>'
     ))
     
     # Add expenses line
     fig3.add_trace(go.Scatter(
         x=years, y=expenses,
-        name='Expenses & Taxes',
-        line=dict(color='rgb(255, 69, 0)', width=4, dash='dash'),  # Bright red-orange
+        name='Expenses',
+        line=dict(color='#EF4444', width=4, dash='dash'),  # Red dashed
         mode='lines',
-        hovertemplate='Age: %{x}<br>Expenses: $%{y:,.0f}<extra></extra>'
+        hovertemplate='<b>Age %{x}</b><br>Expenses: $%{y:,.0f}<extra></extra>'
     ))
     
-    # Add retirement line
-    fig3.add_vline(x=retirement_age, line_dash="dash", line_color="rgba(144, 238, 144, 0.8)", line_width=3,
-                   annotation_font_color="white")
+    # Add retirement marker
+    fig3.add_vline(
+        x=retirement_age,
+        line=dict(color='#16A34A', width=2, dash='dash'),
+        annotation=dict(
+            text="🎯 Retirement",
+            showarrow=False,
+            yref="paper",
+            y=1.05,
+            font=dict(size=14, color='#16A34A', family='Inter', weight=600)
+        )
+    )
     
+    # Apply professional layout
+    layout_config = get_professional_chart_layout()
     fig3.update_layout(
-        title={
-            'text': "Income Sources vs. Expenses Over Time",
-            'font': {'size': 20, 'color': 'white'}
-        },
-        xaxis_title="Age",
-        yaxis_title="Annual Amount",
+        **layout_config,
+        title={'text': 'Income Sources vs. Expenses Over Time'},
+        xaxis_title='Age',
+        yaxis_title='Annual Amount',
         barmode='stack',
-        height=500,
-        plot_bgcolor='rgb(30, 30, 30)',  # Dark background
-        paper_bgcolor='rgb(20, 20, 20)',  # Darker outer background
-        font=dict(color='white'),
+        height=550,
+        width=1200,
+        showlegend=True,
         legend=dict(
             orientation="h",
             yanchor="bottom",
             y=1.02,
             xanchor="right",
             x=1,
-            bgcolor="rgba(40, 40, 40, 0.8)",
-            font=dict(color='white')
+            font=dict(size=13, family='Inter'),
+            bgcolor='rgba(255, 255, 255, 0.9)',
+            bordercolor='#D1D5DB',
+            borderwidth=1
         )
     )
     
-    fig3.update_xaxes(gridcolor='rgba(100, 100, 100, 0.3)', color='white')
-    fig3.update_yaxes(tickformat="$,.0f", gridcolor='rgba(100, 100, 100, 0.3)', color='white')
+    fig3.update_yaxes(tickformat="$,.0f")
     
-    st.plotly_chart(fig3, width="stretch")
+    st.plotly_chart(fig3, use_container_width=True)
     
     # Detailed Statistics Table
-    st.markdown('<p class="section-header">📋 Detailed Projections</p>', unsafe_allow_html=True)
+    st.subheader("📋 Detailed Projections")
     
     df = create_summary_dataframe(results)
     df['Age'] = df['Age'].astype(int)

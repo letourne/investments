@@ -75,21 +75,21 @@ def format_percentage(value: float) -> str:
     return f"{value*100:.1f}%"
 
 
-def create_summary_dataframe(results) -> pd.DataFrame:
+def create_summary_dataframe(results: Dict) -> pd.DataFrame:
     """
     Create a summary DataFrame from simulation results.
     
     Parameters:
     -----------
-    results : SimulationResults
-        Results from run_monte_carlo_simulation()
+    results : dict
+        Results from MonteCarloSimulator.run_simulation()
         
     Returns:
     --------
     pd.DataFrame
     """
-    years = results.years
-    percentiles = results.percentiles
+    years = results['years']
+    percentiles = results['percentiles']
     
     df = pd.DataFrame({
         'Age': years,

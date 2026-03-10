@@ -25,14 +25,6 @@ class RetirementInputs:
     roth_ira: float
     cash: float
     
-    # HSA (optional)
-    hsa_balance: float = 0.0
-    hsa_contribution: float = 0.0
-    
-    # Healthcare costs (optional)
-    healthcare_annual_pre_medicare: float = 12000.0  # Per person or couple
-    healthcare_annual_medicare: float = 9600.0       # Per person or couple
-    
     # Income streams (required)
     social_security_monthly: float
     social_security_start_age: int
@@ -46,6 +38,14 @@ class RetirementInputs:
     inflation_rate: float
     market_model: str  # 'conservative', 'average', 'managed'
     allocation_strategy: str  # 'glide_path', 'optimized'
+    
+    # HSA (optional)
+    hsa_balance: float = 0.0
+    hsa_contribution: float = 0.0
+    
+    # Healthcare costs (optional)
+    healthcare_annual_pre_medicare: float = 12000.0  # Per person or couple
+    healthcare_annual_medicare: float = 9600.0       # Per person or couple
     
     # Pre-retirement income & savings (optional)
     current_salary: float = 0.0
