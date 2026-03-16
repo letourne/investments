@@ -1,0 +1,17 @@
+{
+  "current_age": 54,
+  "retirement_age": 62,
+  "death_age": 90,
+  "is_married": false,
+  "pretax_401k": 0.0,
+  "roth_ira": 0.0,
+  "cash": 0.0,
+  "social_security_monthly": 0.0,
+  "social_security_start_age": 67,
+  "pension_monthly": 0.0,
+  "annual_spending": 75000.0,
+  "final_estate_goal": 0.0,
+  "inflation_rate": 0.03,
+  "market_model": "average",
+  "allocation_strategy": "glide_path"
+}

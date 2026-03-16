@@ -88,8 +88,8 @@ def create_summary_dataframe(results: Dict) -> pd.DataFrame:
     --------
     pd.DataFrame
     """
-    years = results['years']
-    percentiles = results['percentiles']
+    years = results.years
+    percentiles = results.percentiles
     
     df = pd.DataFrame({
         'Age': years,

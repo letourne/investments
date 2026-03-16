@@ -1,31 +1,7 @@
-# Streamlit Configuration
-# This file configures the Streamlit server and UI theme
-
-[server]
-# Server configuration
-port = 8502
-address = "0.0.0.0"
-headless = true
-runOnSave = false
-enableCORS = false
-enableXsrfProtection = false
-
-[browser]
-# Browser configuration
-gatherUsageStats = false
-serverAddress = "0.0.0.0"
-serverPort = 8502
-
 [theme]
-# Dark theme - professional financial dashboard
 base = "dark"
-primaryColor = "#3B7FC4"
-backgroundColor = "#0e1117"
-secondaryBackgroundColor = "#1e2127"
-textColor = "#fafafa"
-font = "sans serif"
-
-[client]
-# Client configuration
-showErrorDetails = true
-toolbarMode = "auto"
+backgroundColor = "#0a0a0f"
+secondaryBackgroundColor = "#0d0d14"
+primaryColor = "#f59e0b"
+textColor = "#e5e7eb"
+font = "monospace"

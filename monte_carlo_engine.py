@@ -160,17 +160,25 @@ def _run_single_simulation_path(
     portfolio_values = np.zeros(n_years)
     
     # Healthcare inflation rate (typically higher than general inflation)
-    healthcare_inflation = 0.04  # 4% annual increase for healthcare costs
+    # Will be multiplied by general inflation each year
+    healthcare_multiplier = 1.33  # Healthcare inflates 33% faster than general inflation
     
-    # Generate market returns for all years
-    stock_returns, bond_returns = historical_data.sample_returns(
+    # Generate market returns AND inflation rates for all years
+    stock_returns, bond_returns, inflation_rates = historical_data.sample_returns(
         n_years, inputs.market_model
     )
+    
+    # Track cumulative inflation for spending adjustments
+    cumulative_inflation_factor = 1.0
     
     for year_idx in range(n_years):
         current_age = inputs.current_age + year_idx
         spouse_age = inputs.spouse_age + year_idx if inputs.is_married else 0
         years_retired = max(0, current_age - inputs.retirement_age)
+        
+        # Update cumulative inflation
+        if year_idx > 0:
+            cumulative_inflation_factor *= (1 + inflation_rates[year_idx])
         
         # Calculate total portfolio (excluding HSA - it's separate for healthcare)
         total_portfolio = pretax_balance + roth_balance + cash_balance
@@ -256,17 +264,16 @@ def _run_single_simulation_path(
                     income += inputs.spouse_social_security_monthly * 12
                 income += inputs.spouse_pension_monthly * 12
             
-            # Adjust spending for inflation
-            years_since_retirement = current_age - inputs.retirement_age
-            inflation_factor = (1 + inputs.inflation_rate) ** years_since_retirement
-            adjusted_spending = inputs.annual_spending * inflation_factor
+            # Adjust spending for cumulative inflation (varies each year)
+            adjusted_spending = inputs.annual_spending * cumulative_inflation_factor
             
-            # Calculate healthcare costs (separate from general spending)
-            healthcare_inflation_factor = (1 + healthcare_inflation) ** years_since_retirement
+            # Calculate healthcare costs (inflates faster than general inflation)
+            # Healthcare inflation = general inflation * healthcare_multiplier
+            healthcare_cumulative_factor = cumulative_inflation_factor ** healthcare_multiplier
             if current_age < 65:  # Pre-Medicare
-                healthcare_cost = inputs.healthcare_annual_pre_medicare * healthcare_inflation_factor
+                healthcare_cost = inputs.healthcare_annual_pre_medicare * healthcare_cumulative_factor
             else:  # Medicare (65+)
-                healthcare_cost = inputs.healthcare_annual_medicare * healthcare_inflation_factor
+                healthcare_cost = inputs.healthcare_annual_medicare * healthcare_cumulative_factor
             
             # Use HSA for healthcare costs FIRST (tax-free!)
             healthcare_from_hsa = min(healthcare_cost, hsa_balance)
